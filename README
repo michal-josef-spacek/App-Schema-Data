@@ -1,0 +1,50 @@
+NAME
+    schema-data - Script to manipulation with data for Schema.
+
+SYNOPSIS
+     schema-data [-h] [-p password] [-u user] [--version] dsn schema_data_module
+
+ARGUMENTS
+    *       "-h"
+
+            Print help.
+
+    *       "-p password"
+
+            Database password.
+
+    *       "-u user"
+
+            Database user.
+
+    *       "--version"
+
+            Print version of script.
+
+    *       "dsn"
+
+            Database DSN. e.g. dbi:SQLite:dbname=ex1.db
+
+    *       "schema_module"
+
+            Name of Schema module. Must be a 'DBIx::Class::Schema' instance.
+
+EXAMPLE
+     schema-data dbi:SQLite:dbname=commons.vote.db Schema::Data::Commons::Vote
+
+REPOSITORY
+    <https://github.com/michal-josef-spacek/App-Schema-Data>
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    © 2022 Michal Josef Špaček
+
+    BSD 2-Clause License
+
+VERSION
+    0.01
+
