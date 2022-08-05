@@ -138,7 +138,7 @@ Returns 1 for error, 0 for success.
  exit App::Schema::Data->new->run;
 
  # Output like:
- # Schema data from 'Schema::Data::Commons::Vote' was inserted to 'dbi:SQLite:dbname=ex2.db'.
+ # Schema data from 'Schema::Data::Commons::Vote' was inserted to 'dbi:SQLite:dbname=sqlite.db'.
 
 =head1 DEPENDENCIES
 
