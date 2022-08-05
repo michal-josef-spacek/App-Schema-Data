@@ -66,6 +66,9 @@ sub run {
 			'Error', $EVAL_ERROR,
 		;
 	}
+	if (! $data->isa('Schema::Data')) {
+		err "Schema data module must be a 'Schema::Data' instance.";
+	}
 
 	$data->insert;
 
@@ -120,6 +123,7 @@ Returns 1 for error, 0 for success.
          Cannot load Schema data module.
                  Module name: %s
                  Error: %s
+         Schema data module must be a 'Schema::Data' instance.
 
 =head1 EXAMPLE
 
