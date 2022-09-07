@@ -5,7 +5,7 @@ use warnings;
 
 use App::Schema::Data;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 # Run.
 exit App::Schema::Data->new->run;
@@ -90,6 +90,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.01
+0.02
 
 =cut
