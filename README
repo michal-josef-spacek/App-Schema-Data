@@ -25,11 +25,12 @@ ARGUMENTS
 
             Database DSN. e.g. dbi:SQLite:dbname=ex1.db
 
-    *       "schema_module"
+    *       "schema_data_module"
 
-            Name of Schema module. Must be a 'DBIx::Class::Schema' instance.
+            Name of Schema data module. Must be a 'Schema::Data' instance.
 
 EXAMPLE
+     schema-deploy dbi:SQLite:dbname=commons.vote.db Schema::Commons::Vote
      schema-data dbi:SQLite:dbname=commons.vote.db Schema::Data::Commons::Vote
 
 REPOSITORY
