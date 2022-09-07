@@ -151,6 +151,10 @@ Returns 1 for error, 0 for success.
 
 =head1 EXAMPLE
 
+=for comment filename=insert_commons_vote_data.pl
+
+ # Need to deploy sqlite.db via schema-deploy dbi:SQLite:dbname=sqlite.db Schema::Commons::Vote
+
  use strict;
  use warnings;
 
