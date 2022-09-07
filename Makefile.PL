@@ -25,6 +25,7 @@ requires 'Getopt::Std' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/App-Schema-Data/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/App-Schema-Data';
 resources 'repository' => 'git://github.com/michal-josef-spacek/App-Schema-Data';
+test_requires 'English' => 0;
 test_requires 'File::Object' => 0;
 test_requires 'File::Spec::Functions' => 0;
 test_requires 'Test::More' => 0;
