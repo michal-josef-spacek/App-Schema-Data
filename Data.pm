@@ -29,17 +29,20 @@ sub run {
 		'h' => 0,
 		'p' => '',
 		'u' => '',
+		'v' => undef,
 	};
-	if (! getopts('hp:u:', $self->{'_opts'})
+	if (! getopts('hp:u:v:', $self->{'_opts'})
 		|| $self->{'_opts'}->{'h'}
 		|| @ARGV < 2) {
 
-		print STDERR "Usage: $0 [-h] [-p password] [-u user] [--version] dsn schema_data_module\n";
-		print STDERR "\t-h\t\tPrint help.\n";
-		print STDERR "\t-p password\tDatabase password.\n";
-		print STDERR "\t-u user\t\tDatabase user.\n";
-		print STDERR "\t--version\tPrint version.\n";
-		print STDERR "\tdsn\t\tDatabase DSN. e.g. dbi:SQLite:dbname=ex1.db\n";
+		print STDERR "Usage: $0 [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module\n";
+		print STDERR "\t-h\t\t\tPrint help.\n";
+		print STDERR "\t-p password\t\tDatabase password.\n";
+		print STDERR "\t-u user\t\t\tDatabase user.\n";
+		print STDERR "\t-v schema_version\tSchema version (default is ".
+			"latest version).\n";
+		print STDERR "\t--version\t\tPrint version.\n";
+		print STDERR "\tdsn\t\t\tDatabase DSN. e.g. dbi:SQLite:dbname=ex1.db\n";
 		print STDERR "\tschema_data_module\tName of Schema data module.\n";
 		return 1;
 	}
@@ -53,8 +56,22 @@ sub run {
 			'Error', $EVAL_ERROR,
 		;
 	}
+
+	my $data_module;
+	my $data_version;
+	if ($self->{'_schema_data_module'}->can('new')) {
+		my $versioned_data = $self->{'_schema_data_module'}->new(
+			$self->{'_opts'}->{'v'} ? (
+				'version' => $self->{'_opts'}->{'v'},
+			) : (),
+		);
+		$data_module = $versioned_data->schema_data;
+		$data_version = $versioned_data->version;
+	} else {
+		$data_module = $self->{'_schema_data_module'};
+	}
 	my $data = eval {
-		$self->{'_schema_data_module'}->new(
+		$data_module->new(
 			'db_options' => {},
 			'db_password' => $self->{'_opts'}->{'p'}, 
 			'db_user' => $self->{'_opts'}->{'u'},
@@ -66,13 +83,20 @@ sub run {
 			'Error', $EVAL_ERROR,
 		;
 	}
-	if (! $data->isa('Schema::Data')) {
-		err "Schema data module must be a 'Schema::Data' instance.";
+
+	# Check Schema::Data::Data instance.
+	if (! $data->isa('Schema::Data::Data')) {
+		err "Schema data module must be a 'Schema::Data::Data' instance.";
 	}
 
 	$data->insert;
 
-	print "Schema data from '$self->{'_schema_data_module'}' was inserted to '$self->{'_dsn'}'.\n";
+	my $print_version = '';
+	if (defined $data_version) {
+		$print_version = '(v'.$data_version.') ';
+	}
+	print "Schema data ${print_version}from '$self->{'_schema_data_module'}' was ".
+		"inserted to '$self->{'_dsn'}'.\n";
 
 	return 0;
 }
@@ -123,7 +147,7 @@ Returns 1 for error, 0 for success.
          Cannot load Schema data module.
                  Module name: %s
                  Error: %s
-         Schema data module must be a 'Schema::Data' instance.
+         Schema data module must be a 'Schema::Data::Data' instance.
 
 =head1 EXAMPLE
 

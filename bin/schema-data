@@ -28,7 +28,7 @@ schema-data - Script to manipulation with data for Schema.
 
 =head1 SYNOPSIS
 
- schema-data [-h] [-p password] [-u user] [--version] dsn schema_data_module
+ schema-data [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module
 
 =head1 ARGUMENTS
 
@@ -45,6 +45,12 @@ Database password.
 =item * C<-u user>
 
 Database user.
+
+=item * C<-v schema_version>
+
+Schema version.
+
+Default value is last version.
 
 =item * C<--version>
 

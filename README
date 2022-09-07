@@ -2,7 +2,7 @@ NAME
     schema-data - Script to manipulation with data for Schema.
 
 SYNOPSIS
-     schema-data [-h] [-p password] [-u user] [--version] dsn schema_data_module
+     schema-data [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module
 
 ARGUMENTS
     *       "-h"
@@ -16,6 +16,12 @@ ARGUMENTS
     *       "-u user"
 
             Database user.
+
+    *       "-v schema_version"
+
+            Schema version.
+
+            Default value is last version.
 
     *       "--version"
 
