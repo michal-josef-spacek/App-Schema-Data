@@ -8,7 +8,7 @@ use Error::Pure qw(err);
 use Getopt::Std;
 use Unicode::UTF8 qw(decode_utf8);
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 # Constructor.
 sub new {
@@ -206,6 +206,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.02
+0.03
 
 =cut
