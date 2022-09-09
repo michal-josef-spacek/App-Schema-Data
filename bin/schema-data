@@ -28,7 +28,7 @@ schema-data - Script to manipulation with data for Schema.
 
 =head1 SYNOPSIS
 
- schema-data [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module
+ schema-data [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module var_key=var_value ..
 
 =head1 ARGUMENTS
 
@@ -64,6 +64,10 @@ e.g. dbi:SQLite:dbname=ex1.db
 =item * C<schema_data_module>
 
 Name of Schema data module. Must be a 'Schema::Data' instance.
+
+=item * C<var_key=var_value>
+
+Variable keys with values for insert.
 
 =back
 

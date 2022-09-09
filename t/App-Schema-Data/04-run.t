@@ -20,7 +20,7 @@ if ($OSNAME eq 'MSWin32') {
 	$script =~ s/\\/\//msg;
 }
 my $right_ret_stderr = <<"END";
-Usage: $script [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module
+Usage: $script [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module var_key=var_value ..
 	-h			Print help.
 	-p password		Database password.
 	-u user			Database user.
@@ -28,6 +28,7 @@ Usage: $script [-h] [-p password] [-u user] [-v schema_version] [--version] dsn 
 	--version		Print version.
 	dsn			Database DSN. e.g. dbi:SQLite:dbname=ex1.db
 	schema_data_module	Name of Schema data module.
+	var_key=var_value	Variable keys with values for insert.
 END
 stderr_is(
 	sub {

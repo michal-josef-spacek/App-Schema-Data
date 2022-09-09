@@ -1,4 +1,5 @@
 0.02
+ - Support variables for insert().
 
 0.01 2022-09-08T01:46:31+02:00
  - First version.

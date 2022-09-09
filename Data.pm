@@ -6,6 +6,7 @@ use warnings;
 use English;
 use Error::Pure qw(err);
 use Getopt::Std;
+use Unicode::UTF8 qw(decode_utf8);
 
 our $VERSION = 0.02;
 
@@ -35,7 +36,8 @@ sub run {
 		|| $self->{'_opts'}->{'h'}
 		|| @ARGV < 2) {
 
-		print STDERR "Usage: $0 [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module\n";
+		print STDERR "Usage: $0 [-h] [-p password] [-u user] [-v schema_version] [--version] dsn ".
+			"schema_data_module var_key=var_value ..\n";
 		print STDERR "\t-h\t\t\tPrint help.\n";
 		print STDERR "\t-p password\t\tDatabase password.\n";
 		print STDERR "\t-u user\t\t\tDatabase user.\n";
@@ -44,10 +46,17 @@ sub run {
 		print STDERR "\t--version\t\tPrint version.\n";
 		print STDERR "\tdsn\t\t\tDatabase DSN. e.g. dbi:SQLite:dbname=ex1.db\n";
 		print STDERR "\tschema_data_module\tName of Schema data module.\n";
+		print STDERR "\tvar_key=var_value\tVariable keys with values for insert.\n";
 		return 1;
 	}
 	$self->{'_dsn'} = shift @ARGV;
 	$self->{'_schema_data_module'} = shift @ARGV;
+	$self->{'_variables'} = {
+		map {
+			my ($k, $v) = split m/=/ms, decode_utf8($_), 2;
+			($k => $v);
+		} @ARGV
+	};
 
 	eval "require $self->{'_schema_data_module'}";
 	if ($EVAL_ERROR) {
@@ -89,7 +98,7 @@ sub run {
 		err "Schema data module must be a 'Schema::Data::Data' instance.";
 	}
 
-	$data->insert;
+	$data->insert($self->{'_variables'});
 
 	my $print_version = '';
 	if (defined $data_version) {
@@ -176,7 +185,8 @@ Returns 1 for error, 0 for success.
 
 L<English>,
 L<Error::Pure>,
-L<Getopt::Std>.
+L<Getopt::Std>,
+L<Unicode::UTF8>.
 
 =head1 REPOSITORY
 

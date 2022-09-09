@@ -2,7 +2,7 @@ NAME
     schema-data - Script to manipulation with data for Schema.
 
 SYNOPSIS
-     schema-data [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module
+     schema-data [-h] [-p password] [-u user] [-v schema_version] [--version] dsn schema_data_module var_key=var_value ..
 
 ARGUMENTS
     *       "-h"
@@ -34,6 +34,10 @@ ARGUMENTS
     *       "schema_data_module"
 
             Name of Schema data module. Must be a 'Schema::Data' instance.
+
+    *       "var_key=var_value"
+
+            Variable keys with values for insert.
 
 EXAMPLE
      schema-deploy dbi:SQLite:dbname=commons.vote.db Schema::Commons::Vote
