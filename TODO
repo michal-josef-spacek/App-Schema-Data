@@ -1,7 +1,8 @@
 TODO
 ====
 1. Add tests.
-2.
+2. Add debug mode argument (--debug?) -> (Schema::Data::Data::db_debug => 1)
+3.
 
 Applied
 =======
