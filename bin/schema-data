@@ -74,7 +74,7 @@ Variable keys with values for insert.
 =head1 EXAMPLE
 
  schema-deploy dbi:SQLite:dbname=commons.vote.db Schema::Commons::Vote
- schema-data dbi:SQLite:dbname=commons.vote.db Schema::Data::Commons::Vote
+ schema-data dbi:SQLite:dbname=commons.vote.db Schema::Data::Commons::Vote 'creator_name=Michal Josef Špaček' creator_email=michal.josef.spacek@wikimedia.cz
 
 =head1 REPOSITORY
 

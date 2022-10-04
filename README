@@ -41,7 +41,7 @@ ARGUMENTS
 
 EXAMPLE
      schema-deploy dbi:SQLite:dbname=commons.vote.db Schema::Commons::Vote
-     schema-data dbi:SQLite:dbname=commons.vote.db Schema::Data::Commons::Vote
+     schema-data dbi:SQLite:dbname=commons.vote.db Schema::Data::Commons::Vote 'creator_name=Michal Josef Špaček' creator_email=michal.josef.spacek@wikimedia.cz
 
 REPOSITORY
     <https://github.com/michal-josef-spacek/App-Schema-Data>
