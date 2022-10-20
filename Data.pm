@@ -82,7 +82,7 @@ sub run {
 	my $data = eval {
 		$data_module->new(
 			'db_options' => {},
-			'db_password' => $self->{'_opts'}->{'p'}, 
+			'db_password' => $self->{'_opts'}->{'p'},
 			'db_user' => $self->{'_opts'}->{'u'},
 			'dsn' => $self->{'_dsn'},
 		);
