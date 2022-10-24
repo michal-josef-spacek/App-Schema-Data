@@ -1,4 +1,5 @@
 0.05
+ - Fix warning in case without -l option.
 
 0.04 2022-10-21T14:02:40+02:00
  - Fix minimal version of Test::Warn to 0.31.

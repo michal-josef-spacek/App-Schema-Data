@@ -109,7 +109,10 @@ sub run {
 	print "Schema data ${print_version}from '$self->{'_schema_data_module'}' was ".
 		"inserted to '$self->{'_dsn'}'.\n";
 
-	my @plugins = split m/:/ms, $self->{'_opts'}->{'l'};
+	my @plugins;
+	if (defined $self->{'_opts'}->{'l'}) {
+		@plugins = split m/:/ms, $self->{'_opts'}->{'l'};
+	}
 	foreach my $plugin (@plugins) {
 
 		# Load plugin object.
