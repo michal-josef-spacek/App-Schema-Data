@@ -214,6 +214,7 @@ Returns 1 for error, 0 for success.
          'Schema::Data::Commons::Vote',
          'creator_name=Michal Josef Špaček',
          'creator_email=michal.josef.spacek@wikimedia.cz',
+         'creator_wm_username=Michal Josef Špaček (WMCZ)',
  );
 
  # Run.
